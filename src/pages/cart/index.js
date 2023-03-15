@@ -1,5 +1,5 @@
 const Cart = () => {
-  return 'This is cart'
+  return 'Under development'
 }
 
 export default Cart

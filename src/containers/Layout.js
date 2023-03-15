@@ -2,10 +2,10 @@ import React from 'react'
 import Header from './Header'
 import { Box } from '@mui/system'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, ...rest }) => {
   return (
     <>
-      <Header />
+      <Header {...rest} />
       <Box marginTop={'20px'}>{children}</Box>
     </>
   )

@@ -9,14 +9,19 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, payload) => {
+    addToCart: (state, action) => {
       return {
         ...(state || {}),
-        cartItems: uniqBy([...(state?.cartItems || []), payload]),
+        cartItems: uniqBy([...(state?.cartItems || []), action.payload], 'id'),
       }
     },
-    removeFromCart: (state) => {
-      return state
+    removeFromCart: (state, action) => {
+      return {
+        ...(state || {}),
+        cartItems: [...(state?.cartItems || [])]?.filter(
+          (s) => s?.id !== action?.payload
+        ),
+      }
     },
   },
 })

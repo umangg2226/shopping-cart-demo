@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import products from '../../mockups/products.json'
 import { uniq } from 'lodash'
+import useCart from '../../hooks/useCart'
 
 const CATEGORIES = products?.reduce((values, item) => {
   return uniq([...values, item?.category])
@@ -180,7 +181,20 @@ const Home = () => {
 
 const Product = ({ item }) => {
   const isOutOfStock = item?.stock === 0
-  const addedToCart = false
+
+  const { addToCart, removeFromCart, cartItems } = useCart()
+
+  const addedToCart = useMemo(() => {
+    return !!cartItems?.find((s) => s?.id === item?.id)
+  }, [item?.id, cartItems])
+
+  const handleAddToCartClick = () => {
+    if (addedToCart) {
+      removeFromCart(item)
+    } else {
+      addToCart(item)
+    }
+  }
 
   return (
     <Grid item xs={4}>
@@ -205,11 +219,16 @@ const Product = ({ item }) => {
           <Typography variant='body2' color='text.secondary'>
             {item?.price}$
           </Typography>
-          <Button disabled={isOutOfStock} style={{ marginTop: '10px' }}>
+          <Button
+            onClick={handleAddToCartClick}
+            disabled={isOutOfStock}
+            style={{ marginTop: '10px' }}
+            color={addedToCart ? 'error' : 'primary'}
+          >
             {isOutOfStock
               ? 'Out of Stock'
               : addedToCart
-              ? 'Remove Item'
+              ? 'Remove from Cart'
               : 'Add to Cart'}
           </Button>
         </CardContent>

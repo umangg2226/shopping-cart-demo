@@ -8,9 +8,11 @@ import {
 } from '@mui/material'
 import { LightMode, DarkMode, ShoppingCart } from '@mui/icons-material'
 import useToggleTheme from '../hooks/useToggleTheme'
+import useCart from '../hooks/useCart'
 
-const Header = () => {
+const Header = ({ history }) => {
   const { darkMode, toggleTheme } = useToggleTheme()
+  const { cartItems } = useCart()
 
   return (
     <AppBar position='sticky' disablegutters='true'>
@@ -20,6 +22,10 @@ const Header = () => {
           noWrap
           component='div'
           sx={{ display: { xs: 'none', sm: 'block' } }}
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            // history.push('/')
+          }}
         >
           Shopping Task
         </Typography>
@@ -33,8 +39,14 @@ const Header = () => {
           >
             {darkMode ? <LightMode /> : <DarkMode />}
           </IconButton>
-          <IconButton size='large' color='inherit'>
-            <Badge badgeContent={17} color='error'>
+          <IconButton
+            size='large'
+            color='inherit'
+            onClick={() => {
+              // history.push('/cart')
+            }}
+          >
+            <Badge badgeContent={cartItems?.length} color='error'>
               <ShoppingCart />
             </Badge>
           </IconButton>
