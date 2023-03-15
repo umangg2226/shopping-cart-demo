@@ -1,38 +1,9 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import AppRoutes from './containers/AppRoutes'
 import useToggleTheme from './hooks/useToggleTheme'
 import { Container } from '@mui/system'
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-  typography: {
-    fontFamily: [
-      'Nunito',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
-  },
-})
-
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-  typography: {
-    fontFamily: [
-      'Product Sans',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
-  },
-})
+import { darkTheme, lightTheme } from './containers/theme'
 
 const App = () => {
   const { darkMode } = useToggleTheme()

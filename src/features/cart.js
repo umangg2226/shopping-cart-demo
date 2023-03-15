@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { uniqBy } from 'lodash'
 
 const initialState = {
   cartItems: [],
@@ -8,8 +9,11 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state) => {
-      return state
+    addToCart: (state, payload) => {
+      return {
+        ...(state || {}),
+        cartItems: uniqBy([...(state?.cartItems || []), payload]),
+      }
     },
     removeFromCart: (state) => {
       return state
