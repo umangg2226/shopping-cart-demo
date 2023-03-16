@@ -24,7 +24,7 @@ const Header = ({ history }) => {
           sx={{ display: { xs: 'none', sm: 'block' } }}
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            // history.push('/')
+            history.push('/')
           }}
         >
           Shopping Task
@@ -43,7 +43,7 @@ const Header = ({ history }) => {
             size='large'
             color='inherit'
             onClick={() => {
-              // history.push('/cart')
+              history.push('/cart')
             }}
           >
             <Badge badgeContent={cartItems?.length} color='error'>
