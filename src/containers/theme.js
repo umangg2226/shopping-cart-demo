@@ -45,6 +45,13 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '7px',
+        },
+      },
+    },
   },
 })
 
@@ -90,6 +97,13 @@ const lightTheme = createTheme({
           '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner': {
             // backgroundColor: '#2b2b2b',
           },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '7px',
         },
       },
     },

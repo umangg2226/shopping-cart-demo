@@ -1,17 +1,26 @@
-import { toggleTheme as toggleThemeMethod } from '../features/theme'
+import {
+  toggleTheme as toggleThemeMethod,
+  showSuccess,
+} from '../features/theme'
 import { useSelector, useDispatch } from 'react-redux'
 
 const useToggleTheme = () => {
-  const { darkMode } = useSelector((state) => state.theme)
+  const { darkMode, successMessage } = useSelector((state) => state.theme)
   const dispatch = useDispatch()
 
   const toggleTheme = () => {
     dispatch(toggleThemeMethod())
   }
 
+  const setSuccessMessage = (message) => {
+    dispatch(showSuccess(message))
+  }
+
   return {
     toggleTheme,
     darkMode,
+    successMessage,
+    setSuccessMessage,
   }
 }
 

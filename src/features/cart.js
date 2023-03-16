@@ -23,9 +23,54 @@ export const cartSlice = createSlice({
         ),
       }
     },
+    increaseItemQty: (state, action) => {
+      return {
+        ...(state || {}),
+        cartItems: [...(state?.cartItems || [])]?.map((s) => {
+          if (action?.payload === s?.id) {
+            return {
+              ...s,
+              qty: s?.qty + 1,
+            }
+          }
+
+          return {
+            ...s,
+          }
+        }),
+      }
+    },
+    decreaseItemQty: (state, action) => {
+      return {
+        ...(state || {}),
+        cartItems: [...(state?.cartItems || [])]?.map((s) => {
+          if (action?.payload === s?.id) {
+            return {
+              ...s,
+              qty: s?.qty - 1,
+            }
+          }
+
+          return {
+            ...s,
+          }
+        }),
+      }
+    },
+    resetCart: (state) => {
+      return {
+        ...(initialState || {}),
+      }
+    },
   },
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const {
+  addToCart,
+  removeFromCart,
+  increaseItemQty,
+  decreaseItemQty,
+  resetCart,
+} = cartSlice.actions
 
 export default cartSlice.reducer

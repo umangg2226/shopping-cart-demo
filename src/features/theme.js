@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   darkMode: true,
+  successMessage: '',
 }
 
 export const themeSlice = createSlice({
@@ -14,9 +15,15 @@ export const themeSlice = createSlice({
         darkMode: !state?.darkMode,
       }
     },
+    showSuccess: (state, action) => {
+      return {
+        ...(state || {}),
+        successMessage: action.payload,
+      }
+    },
   },
 })
 
-export const { toggleTheme } = themeSlice.actions
+export const { toggleTheme, showSuccess } = themeSlice.actions
 
 export default themeSlice.reducer
